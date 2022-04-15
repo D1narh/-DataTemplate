@@ -1,0 +1,35 @@
+        public void TestFirstName()
+        {
+            if (--Ваш ListBox--.SelectedItem == null)
+                return;
+            var _Container = --Ваш ListBox--.ItemContainerGenerator
+                .ContainerFromItem(--Ваш ListBox--.SelectedItem);
+
+            foreach (var item in --Ваш ListBox--.Items)
+            {
+
+                var _Children = AllChildren(_Container);
+
+                var _FirstName = _Children
+                    // only interested in TextBoxes
+                    .OfType<Label>()
+                    // only interested in FirstName
+                    .First(x => x.Name.Equals("--То что хотите найти в ListBox--"));// ID допустим - это имя label
+
+                // test & set color
+                delete = _FirstName.Content.ToString();
+            }
+        }
+
+        public List<Control> AllChildren(DependencyObject parent)
+        {
+            var _List = new List<Control>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var _Child = VisualTreeHelper.GetChild(parent, i);
+                if (_Child is Control)
+                    _List.Add(_Child as Control);
+                _List.AddRange(AllChildren(_Child));
+            }
+            return _List;
+        }
