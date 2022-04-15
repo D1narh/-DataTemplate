@@ -17,7 +17,7 @@
                     .First(x => x.Name.Equals("--То что хотите найти в ListBox--"));// ID допустим - это имя label
 
                 // test & set color
-                delete = _FirstName.Content.ToString();
+                MessageBox.Show(_FirstName.Content.ToString());
             }
         }
 
